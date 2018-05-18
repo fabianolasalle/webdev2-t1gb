@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.lasalle.jdbc;
+package br.com.unilasalle.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ public class ConnectionSingleton {
         try {
             if (null == this.connection) {
                 Class.forName("com.mysql.jdbc.Driver"); 
-                this.connection = DriverManager.getConnection("jdbc:mysql://localhost/webdevg2t1?characterEncoding=utf8", "root", "123456");
+                this.connection = DriverManager.getConnection("jdbc:mysql://localhost/webdev2g2t1?characterEncoding=utf8", "root", "123456");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

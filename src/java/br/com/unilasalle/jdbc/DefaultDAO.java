@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.lasalle.jdbc;
+package br.com.unilasalle.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;

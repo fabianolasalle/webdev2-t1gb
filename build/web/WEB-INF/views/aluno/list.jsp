@@ -10,17 +10,15 @@
               </tr>
             </thead>
             <tbody>
-            <% for (Cliente cliente : clientes) { %>
+            <c:foreach var="entry" items="${data}">
                 <tr>
-                    <td><%=cliente.getId()%></td>
-                    <td><%=cliente.getPessoa().getNome()%></td>
-                    <td><%=cliente.getPessoa().getCpfHtml()%></td>
+                    <td><c:out value=${entry}/></td>
+                    
                     <td>
-                        <a href="cliente-save?id=<%=cliente.getId()%>"><button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button></a>
-                        <a href="cliente-remove?id=<%=cliente.getId()%>"><button class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button></a>
+
                     </td>
                 </tr>
-            <% } %>
+            </c:foreach>
             </tbody>
         </table>
     </div>

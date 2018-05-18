@@ -5,6 +5,9 @@
  */
 package br.com.unilasalle.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author fabiano
@@ -17,6 +20,16 @@ public class Aluno {
     public String email;
     public String matricula;
     public String cpf;
+    
+    public Aluno(ResultSet rs) throws SQLException {
+        this.id = rs.getLong("id");
+        this.nome = rs.getString("nome");
+        this.telefone = rs.getString("telefone");
+        this.endereco = rs.getString("endereco");
+        this.email = rs.getString("email");
+        this.matricula = rs.getString("matricula");
+        this.cpf = rs.getString("cpf");
+    }
 
     public long getId() {
         return id;

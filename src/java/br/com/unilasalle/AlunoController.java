@@ -5,6 +5,8 @@
  */
 package br.com.unilasalle;
 
+import br.com.unilasalle.jdbc.AlunoDAO;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,8 +24,12 @@ public class AlunoController {
     // public ModelAndView getSingleBulletin(@PathVariable("id") int id, Model model) 
     
     @RequestMapping(value = "/aluno/list", method = RequestMethod.GET)
-    public String list(ModelMap model, HttpServletRequest request) {
+    public String list(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
         model.addAttribute("viewFile", "aluno/list.jsp");
+        
+        // TODO: AlunoDAo Get all mandar para o model
+        AlunoDAO dao = new AlunoDAO();
+        model.addAttribute("data", dao.getAll());
         return "template";
     }
     
