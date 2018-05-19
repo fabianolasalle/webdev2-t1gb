@@ -1,6 +1,6 @@
 package br.com.unilasalle.dao;
 
-import br.com.unilasalle.entity.Aluno;
+import br.com.unilasalle.entity.Professor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,23 +8,23 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlunoDAO extends DefaultDAO {
+public class ProfessorDAO extends DefaultDAO {
     
-    public String tablename = "aluno";
+    public String tablename = "professor";
     
-    public AlunoDAO() throws ClassNotFoundException{
+    public ProfessorDAO() throws ClassNotFoundException{
         super();
     }
     
-    public List<Aluno> getAll() throws SQLException, ClassNotFoundException
+    public List<Professor> getAll() throws SQLException, ClassNotFoundException
     {
         String sql = "SELECT * FROM " + this.tablename;
-        List<Aluno> data = new ArrayList<Aluno>();
+        List<Professor> data = new ArrayList<Professor>();
         PreparedStatement stmt = this.getConnection().prepareStatement(sql);
         ResultSet resultSet = stmt.executeQuery();
         
         while (resultSet.next()) {
-            Aluno entity = new Aluno(resultSet);            
+            Professor entity = new Professor(resultSet);            
             data.add(entity);
         }
         resultSet.close();
@@ -33,39 +33,41 @@ public class AlunoDAO extends DefaultDAO {
         return data;
     }
     
-    public Aluno getSingle(Long id) throws SQLException, ClassNotFoundException
+    public Professor getSingle(Long id) throws SQLException, ClassNotFoundException
     {
         String sql = "SELECT * FROM " + this.tablename + " WHERE id = ?";
         PreparedStatement stmt = this.getConnection().prepareStatement(sql);
         stmt.setLong(1, id);
         ResultSet resultSet = stmt.executeQuery();
-        Aluno entity = null;
+        Professor entity = null;
         
         while (resultSet.next()) {
-            entity = new Aluno(resultSet);
+            entity = new Professor(resultSet);
         }
         
         return entity;
     }
     
-    public boolean update(Aluno entity) throws SQLException
+    public boolean update(Professor entity) throws SQLException
     {
         String sql = "UPDATE " + this.tablename + " SET "
                 + "nome = ?, "
                 + "telefone = ?, "
                 + "endereco = ?, "
-                + "matricula = ?, "
+                + "registro = ?, "
                 + "cpf = ?, "
-                + "email = ? "
+                + "email = ?,"
+                + "salario = ? "
                 + " WHERE id = ?";
         PreparedStatement stmt = this.getConnection().prepareStatement(sql);
         stmt.setString(1, entity.getNome());
         stmt.setString(2, entity.getTelefone());
         stmt.setString(3, entity.getEndereco());
-        stmt.setString(4, entity.getMatricula());
+        stmt.setString(4, entity.getRegistro());
         stmt.setString(5, entity.getCpf());
         stmt.setString(6, entity.getEmail());
-        stmt.setLong(7, entity.getId());
+        stmt.setFloat(7, entity.getSalario());
+        stmt.setLong(8, entity.getId());
         
         int result = stmt.executeUpdate();
         stmt.close();
@@ -73,17 +75,18 @@ public class AlunoDAO extends DefaultDAO {
         return result == 1;
     }
     
-    public long insert(Aluno entity) throws SQLException
+    public long insert(Professor entity) throws SQLException
     {
-        String sql = "INSERT INTO " + this.tablename + " (nome, telefone, endereco, email, matricula, cpf) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO " + this.tablename + " (nome, telefone, endereco, email, registro, cpf, salario) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement stmt = this.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, entity.getNome());
         stmt.setString(2, entity.getTelefone());
         stmt.setString(3, entity.getEndereco());
         stmt.setString(4, entity.getEmail());
-        stmt.setString(5, entity.getMatricula());
+        stmt.setString(5, entity.getRegistro());
         stmt.setString(6, entity.getCpf());
+        stmt.setFloat(7, entity.getSalario());
         
         int result = stmt.executeUpdate();
         

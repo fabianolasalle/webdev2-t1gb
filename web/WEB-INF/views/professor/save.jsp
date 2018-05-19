@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"	%>
 <div clas="row">
     <div class="col">
-        <form method="POST" action="/webdev2-t1gb/aluno/save">
+        <form method="POST" action="/webdev2-t1gb/professor/save">
             <div class="form-group">
               <label for="nome">Nome</label>
               <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" value="${data.nome}" maxlength="20" required>
@@ -24,14 +24,19 @@
             </div>
 
             <div class="form-group">
-              <label for="matricula">Matrícula</label>
-              <input type="text" class="form-control" name="matricula" id="matricula" placeholder="matricula" value="${data.matricula}" required>
+              <label for="registro">Registro</label>
+              <input type="text" class="form-control" name="registro" id="registro" placeholder="registro" value="${data.registro}" required>
             </div>
 
             <div class="form-group">
               <label for="cpf">CPF</label>
               <input type="text" class="form-control" name="cpf" id="cpf" placeholder="cpf" value="${data.cpf}" required>
-            </div>            
+            </div>      
+            
+            <div class="form-group">
+              <label for="salario">Salário</label>
+              <input type="text" class="form-control" name="salario" id="salario" placeholder="salario" value="${data.salario}" required>
+            </div>
             
             <c:if test="${data.id gt 0}">
                 <input type="hidden" name="id" value="${data.id}">

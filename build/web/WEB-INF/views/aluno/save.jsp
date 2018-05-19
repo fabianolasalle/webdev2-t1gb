@@ -5,7 +5,7 @@
         <form method="POST" action="/webdev2-t1gb/aluno/save">
             <div class="form-group">
               <label for="nome">Nome</label>
-              <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" value="${data.nome}" required>
+              <input type="text" class="form-control" name="nome" id="nome" placeholder="nome" value="${data.nome}" maxlength="20" required>
             </div>
 
             <div class="form-group">
@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-group">
-              <label for="email">Telefone</label>
+              <label for="email">E-mail</label>
               <input type="email" class="form-control" name="email" id="email" placeholder="email" value="${data.email}" required>
             </div>
 

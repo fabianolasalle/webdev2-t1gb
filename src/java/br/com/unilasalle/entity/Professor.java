@@ -5,6 +5,9 @@
  */
 package br.com.unilasalle.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author fabiano
@@ -19,6 +22,18 @@ public class Professor {
     public String cpf;
     public float salario;   
 
+    public Professor(ResultSet rs) throws SQLException {
+        this.id = rs.getLong("id");
+        this.nome = rs.getString("nome");
+        this.telefone = rs.getString("telefone");
+        this.endereco = rs.getString("endereco");
+        this.email = rs.getString("email");
+        this.registro = rs.getString("registro");
+        this.cpf = rs.getString("cpf");
+        this.salario = rs.getFloat("salario");
+    }
+    
+    public Professor() {}
     public long getId() {
         return id;
     }

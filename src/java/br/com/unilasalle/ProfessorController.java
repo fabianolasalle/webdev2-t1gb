@@ -5,8 +5,8 @@
  */
 package br.com.unilasalle;
 
-import br.com.unilasalle.entity.Aluno;
-import br.com.unilasalle.dao.AlunoDAO;
+import br.com.unilasalle.dao.ProfessorDAO;
+import br.com.unilasalle.entity.Professor;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -21,41 +21,41 @@ import org.springframework.web.servlet.view.RedirectView;
  * @author fabiano
  */
 @Controller
-public class AlunoController {
-
+public class ProfessorController {
+        
     // @RequestMapping(value = "/bulletin/{id}", method = RequestMethod.GET)
     // public ModelAndView getSingleBulletin(@PathVariable("id") int id, Model model) 
     
-    @RequestMapping(value = "/aluno/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/professor/list", method = RequestMethod.GET)
     public String list(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
-        model.addAttribute("viewFile", "aluno/list.jsp");
+        model.addAttribute("viewFile", "professor/list.jsp");
         
-        AlunoDAO dao = new AlunoDAO();
+        ProfessorDAO dao = new ProfessorDAO();
         model.addAttribute("data", dao.getAll());
         return "template";
     }
 
-    @RequestMapping(value = "/aluno/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/professor/save", method = RequestMethod.GET)
     public String save(ModelMap model) {
-        model.addAttribute("viewFile", "aluno/save.jsp");
+        model.addAttribute("viewFile", "professor/save.jsp");
         
         return "template";
     }
     
-    @RequestMapping(value = "/aluno/save/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/professor/save/{id}", method = RequestMethod.GET)
     public String save(@PathVariable("id") long id, ModelMap model) throws ClassNotFoundException, SQLException {
-        AlunoDAO dao = new AlunoDAO();
-        Aluno entity = dao.getSingle(id);
+        ProfessorDAO dao = new ProfessorDAO();
+        Professor entity = dao.getSingle(id);
         
         model.addAttribute("data", entity);
-        model.addAttribute("viewFile", "aluno/save.jsp");
+        model.addAttribute("viewFile", "professor/save.jsp");
         
         return "template";
     }
     
-    @RequestMapping(value = "/aluno/save", method = RequestMethod.POST)
-    public String savePost(Aluno entity) throws ClassNotFoundException, SQLException {
-        AlunoDAO dao = new AlunoDAO();
+    @RequestMapping(value = "/professor/save", method = RequestMethod.POST)
+    public String savePost(Professor entity) throws ClassNotFoundException, SQLException {
+        ProfessorDAO dao = new ProfessorDAO();
         
         if (entity.getId() > 0) {
             dao.update(entity);
@@ -63,14 +63,14 @@ public class AlunoController {
             dao.insert(entity);
         }
         
-        return "redirect:/aluno/list";
+        return "redirect:/professor/list";
     }
     
-    @RequestMapping(value = "/aluno/remove/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/professor/remove/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable("id") long id, ModelMap model) throws ClassNotFoundException, SQLException {
-        AlunoDAO dao = new AlunoDAO(); 
+        ProfessorDAO dao = new ProfessorDAO(); 
         dao.remove(id);
         
-        return "redirect:/aluno/list";
+        return "redirect:/professor/list";
     }
 }
