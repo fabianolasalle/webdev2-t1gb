@@ -10,27 +10,27 @@
 
             <div class="form-group">
               <label for="endereco">Endereço</label>
-              <input type="text" class="form-control" name="endereco" id="endereco" placeholder="endereco" value="${data.endereco}" required>
+              <input type="text" class="form-control" name="endereco" id="endereco" placeholder="endereco" value="${data.endereco}" maxlength="255" required>
             </div>
             
             <div class="form-group">
               <label for="telefone">Telefone</label>
-              <input type="text" class="form-control" name="telefone" id="telefone" placeholder="telefone" value="${data.telefone}" required>
+              <input type="text" class="form-control" name="telefone" id="telefone" placeholder="telefone" value="${data.telefone}" maxlength="14" required>
             </div>
 
             <div class="form-group">
               <label for="email">E-mail</label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="email" value="${data.email}" required>
+              <input type="email" class="form-control" name="email" id="email" placeholder="email" value="${data.email}" maxlength="40" required>
             </div>
 
             <div class="form-group">
               <label for="registro">Registro</label>
-              <input type="text" class="form-control" name="registro" id="registro" placeholder="registro" value="${data.registro}" required>
+              <input type="text" class="form-control" name="registro" id="registro" placeholder="registro" value="${data.registro}" maxlength="5" required>
             </div>
 
             <div class="form-group">
               <label for="cpf">CPF</label>
-              <input type="text" class="form-control" name="cpf" id="cpf" placeholder="cpf" value="${data.cpf}" required>
+              <input type="text" class="form-control" name="cpf" id="cpf" placeholder="cpf" value="${data.cpf}" maxlength="11" required>
             </div>      
             
             <div class="form-group">
