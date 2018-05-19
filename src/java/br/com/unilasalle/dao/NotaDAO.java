@@ -57,6 +57,22 @@ public class NotaDAO extends DefaultDAO {
         return entity;
     }
     
+    public Nota getByIdAlunoDisciplina(Long idAluno, Long idDisciplina) throws SQLException, ClassNotFoundException
+    {
+        String sql = "SELECT * FROM " + this.tablename + " WHERE id_aluno = ? AND id_disciplina = ?";
+        PreparedStatement stmt = this.getConnection().prepareStatement(sql);
+        stmt.setLong(1, idAluno);
+        stmt.setLong(2, idDisciplina);
+        ResultSet resultSet = stmt.executeQuery();
+        Nota entity = null;
+        
+        while (resultSet.next()) {
+            entity = new Nota(resultSet);
+        }
+        
+        return entity;
+    }
+    
     public boolean update(Nota entity) throws SQLException
     {
         String sql = "UPDATE " + this.tablename + " SET "

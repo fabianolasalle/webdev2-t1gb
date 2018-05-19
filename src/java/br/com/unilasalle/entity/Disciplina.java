@@ -13,7 +13,7 @@ import java.sql.SQLException;
  * @author fabiano
  */
 public class Disciplina {
-    
+
     public Disciplina(ResultSet rs) throws SQLException {
         this.id = rs.getLong("id");
         this.nome = rs.getString("nome");
@@ -21,9 +21,10 @@ public class Disciplina {
         this.id_professor = rs.getLong("id_professor");
         this.cargaHoraria = rs.getLong("cargaHoraria");
     }
-    
-    public Disciplina() {}
-    
+
+    public Disciplina() {
+    }
+
     public long getId() {
         return id;
     }

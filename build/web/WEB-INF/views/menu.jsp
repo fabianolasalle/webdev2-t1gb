@@ -20,5 +20,10 @@
           <i class="fas fa-address-book"></i> Notas
         </a>
       </li>
+      <li class="nav-item">
+          <a class="nav-link" href="/webdev2-t1gb/consulta">
+          <i class="fas fa-address-book"></i> Consultar Notas
+        </a>
+      </li>
     </ul>
 </div>
