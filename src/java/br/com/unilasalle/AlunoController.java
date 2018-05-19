@@ -6,7 +6,7 @@
 package br.com.unilasalle;
 
 import br.com.unilasalle.entity.Aluno;
-import br.com.unilasalle.jdbc.AlunoDAO;
+import br.com.unilasalle.dao.AlunoDAO;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
@@ -56,7 +56,12 @@ public class AlunoController {
     @RequestMapping(value = "/aluno/save", method = RequestMethod.POST)
     public String savePost(Aluno aluno) throws ClassNotFoundException, SQLException {
         AlunoDAO dao = new AlunoDAO();
-        dao.insert(aluno);
+        
+        if (aluno.getId() > 0) {
+            dao.update(aluno);
+        } else {
+            dao.insert(aluno);
+        }
         
         return "redirect:/aluno/list";
     }

@@ -1,4 +1,4 @@
-package br.com.unilasalle.jdbc;
+package br.com.unilasalle.dao;
 
 import br.com.unilasalle.entity.Aluno;
 import java.sql.PreparedStatement;
@@ -50,7 +50,27 @@ public class AlunoDAO extends DefaultDAO {
     
     public boolean update(Aluno aluno) throws SQLException
     {
-        return true;
+        String sql = "UPDATE " + this.tablename + " SET "
+                + "nome = ?, "
+                + "telefone = ?, "
+                + "endereco = ?, "
+                + "matricula = ?, "
+                + "cpf = ?, "
+                + "email = ? "
+                + " WHERE id = ?";
+        PreparedStatement stmt = this.getConnection().prepareStatement(sql);
+        stmt.setString(1, aluno.getNome());
+        stmt.setString(2, aluno.getTelefone());
+        stmt.setString(3, aluno.getEndereco());
+        stmt.setString(4, aluno.getMatricula());
+        stmt.setString(5, aluno.getCpf());
+        stmt.setString(6, aluno.getEmail());
+        stmt.setLong(7, aluno.getId());
+        
+        int result = stmt.executeUpdate();
+        stmt.close();
+        
+        return result == 1;
     }
     
     public long insert(Aluno aluno) throws SQLException
