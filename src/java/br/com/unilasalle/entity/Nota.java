@@ -5,11 +5,51 @@
  */
 package br.com.unilasalle.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author fabiano
  */
 public class Nota {
+
+    public long id;
+    public float nota1;
+    public float nota2;
+    public float nota3;
+    public long id_disciplina;
+    public long id_aluno;
+    public Aluno aluno;
+    public Disciplina disciplina;
+
+    public Nota(ResultSet rs) throws SQLException {
+        this.id = rs.getLong("id");
+        this.nota1 = rs.getFloat("nota1");
+        this.nota2 = rs.getFloat("nota2");
+        this.nota3 = rs.getFloat("nota3");
+        this.id_disciplina = rs.getLong("id_disciplina");
+        this.id_aluno = rs.getLong("id_aluno");
+    }
+
+    public Nota() {
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
+    }
 
     public long getId() {
         return id;
@@ -58,10 +98,4 @@ public class Nota {
     public void setId_aluno(long id_aluno) {
         this.id_aluno = id_aluno;
     }
-    public long id;
-    public float nota1;
-    public float nota2;
-    public float nota3;
-    public long id_disciplina;
-    public long id_aluno;
 }
