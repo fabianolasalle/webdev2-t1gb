@@ -11,7 +11,7 @@
         </a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/webdev2-t1gb/disciplina/list">
           <i class="fas fa-address-book"></i> Disciplina
         </a>
       </li>

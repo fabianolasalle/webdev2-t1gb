@@ -5,12 +5,25 @@
  */
 package br.com.unilasalle.entity;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author fabiano
  */
 public class Disciplina {
-
+    
+    public Disciplina(ResultSet rs) throws SQLException {
+        this.id = rs.getLong("id");
+        this.nome = rs.getString("nome");
+        this.codigo = rs.getString("codigo");
+        this.id_professor = rs.getLong("id_professor");
+        this.cargaHoraria = rs.getLong("cargaHoraria");
+    }
+    
+    public Disciplina() {}
+    
     public long getId() {
         return id;
     }
