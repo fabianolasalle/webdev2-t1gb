@@ -30,6 +30,8 @@ public class Aluno {
         this.matricula = rs.getString("matricula");
         this.cpf = rs.getString("cpf");
     }
+    
+    public Aluno() { }
 
     public long getId() {
         return id;

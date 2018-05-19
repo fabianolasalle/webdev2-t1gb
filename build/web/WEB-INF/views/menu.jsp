@@ -1,7 +1,7 @@
 <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-          <a class="nav-link" href="aluno/list">
+          <a class="nav-link" href="/webdev2-t1gb/aluno/list">
           <i class="fas fa-address-book"></i> Aluno
         </a>
       </li>

@@ -5,13 +5,16 @@
  */
 package br.com.unilasalle;
 
+import br.com.unilasalle.entity.Aluno;
 import br.com.unilasalle.jdbc.AlunoDAO;
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *
@@ -27,21 +30,42 @@ public class AlunoController {
     public String list(ModelMap model, HttpServletRequest request) throws ClassNotFoundException, SQLException {
         model.addAttribute("viewFile", "aluno/list.jsp");
         
-        // TODO: AlunoDAo Get all mandar para o model
         AlunoDAO dao = new AlunoDAO();
         model.addAttribute("data", dao.getAll());
         return "template";
     }
-    
+
     @RequestMapping(value = "/aluno/save", method = RequestMethod.GET)
     public String save(ModelMap model) {
-        model.addAttribute("greeting", "Hello World Again, from Spring 4 MVC");
-        return "ok";
+        model.addAttribute("viewFile", "aluno/save.jsp");
+        
+        return "template";
     }
     
-    @RequestMapping(value = "/aluno/remove", method = RequestMethod.GET)
-    public String remove(ModelMap model) {
-        model.addAttribute("greeting", "Hello World Again, from Spring 4 MVC");
-        return "ok";
+    @RequestMapping(value = "/aluno/save/{id}", method = RequestMethod.GET)
+    public String save(@PathVariable("id") long id, ModelMap model) throws ClassNotFoundException, SQLException {
+        AlunoDAO dao = new AlunoDAO();
+        Aluno aluno = dao.getSingle(id);
+        
+        model.addAttribute("data", aluno);
+        model.addAttribute("viewFile", "aluno/save.jsp");
+        
+        return "template";
+    }
+    
+    @RequestMapping(value = "/aluno/save", method = RequestMethod.POST)
+    public String savePost(Aluno aluno) throws ClassNotFoundException, SQLException {
+        AlunoDAO dao = new AlunoDAO();
+        dao.insert(aluno);
+        
+        return "redirect:/aluno/list";
+    }
+    
+    @RequestMapping(value = "/aluno/remove/{id}", method = RequestMethod.GET)
+    public String remove(@PathVariable("id") long id, ModelMap model) throws ClassNotFoundException, SQLException {
+        AlunoDAO dao = new AlunoDAO(); 
+        dao.remove(id);
+        
+        return "redirect:/aluno/list";
     }
 }
