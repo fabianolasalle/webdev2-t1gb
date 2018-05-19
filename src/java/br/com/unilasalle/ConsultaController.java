@@ -8,21 +8,17 @@ package br.com.unilasalle;
 import br.com.unilasalle.dao.AlunoDAO;
 import br.com.unilasalle.dao.DisciplinaDAO;
 import br.com.unilasalle.dao.NotaDAO;
-import br.com.unilasalle.dao.ProfessorDAO;
 import br.com.unilasalle.entity.Aluno;
 import br.com.unilasalle.entity.Disciplina;
 import br.com.unilasalle.entity.Nota;
-import br.com.unilasalle.entity.Professor;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.RedirectView;
 
 /**
  *

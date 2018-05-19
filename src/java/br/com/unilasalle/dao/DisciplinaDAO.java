@@ -1,7 +1,6 @@
 package br.com.unilasalle.dao;
 
 import br.com.unilasalle.entity.Disciplina;
-import br.com.unilasalle.entity.Professor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
